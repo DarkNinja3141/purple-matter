@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "purplematter:purple_matter_block" }
+        ]
+    }
+}

@@ -1,3 +1,7 @@
 #Items
 item.purplematter.purple_matter.name=Purple Matter
 item.purplematter.aionios_fuel.name=Aionios Fuel
+
+#Blocks
+tile.purplematter.purple_matter_block.name=Purple Matter Block
+tile.purplematter.aionios_fuel_block.name=Aionios Fuel Block

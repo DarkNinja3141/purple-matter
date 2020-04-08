@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "purplematter:aionios_fuel_block"
+        }
+    ],
+    "result": {
+        "item": "purplematter:aionios_fuel",
+        "count": 9
+    }
+}

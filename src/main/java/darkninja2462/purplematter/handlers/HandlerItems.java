@@ -24,7 +24,7 @@ public class HandlerItems {
     private static Map<Item, String> simpleItems = new HashMap<>();
 
     static {
-        //Register simple items
+        //Create simple items
         Reflections reflections = new Reflections("darkninja2462.purplematter");
         Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(SimpleModItem.class);
         for(Class<?> c : annotated) {
