@@ -17,13 +17,9 @@ public class PurpleMatter
 {
     public static final String MODID = "purplematter";
     public static final String NAME = "Purple Matter";
-    public static final String VERSION = "0.0.0";
+    public static final String VERSION = "0.0.1";
 
     private static Logger logger;
-
-    public PurpleMatter() {
-        MinecraftForge.EVENT_BUS.register(HandlerItems.class);
-    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
