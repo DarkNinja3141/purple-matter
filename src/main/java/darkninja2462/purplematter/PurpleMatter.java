@@ -17,7 +17,7 @@ public class PurpleMatter
 {
     public static final String MODID = "purplematter";
     public static final String NAME = "Purple Matter";
-    public static final String VERSION = "0.0.1";
+    public static final String VERSION = "0.0.2";
 
     private static Logger logger;
 
@@ -30,8 +30,7 @@ public class PurpleMatter
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        // some example code
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
     }
 
 }
