@@ -1,19 +1,19 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "purplematter:aionios_fuel"
-        },
-        {
-            "item": "purplematter:aionios_fuel"
-        },
-        {
-            "item": "purplematter:aionios_fuel"
-        },
-        {
-            "item": "purplematter:aionios_fuel"
-        }
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ARA",
+        "RAR",
+        "ARA"
     ],
+    "key": {
+        "A": {
+            "item": "purplematter:aionios_fuel"
+        },
+        "R": {
+            "item": "projecte:item.pe_matter",
+            "data": 1
+        }
+    },
     "result": {
         "item": "purplematter:purple_matter"
     }
