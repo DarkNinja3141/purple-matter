@@ -21,7 +21,7 @@ public class HandlerItems {
 
     //A list of all Item classes that are annotated with @SimpleModItem
     //Maps an item to its registry name
-    private static Map<Item, String> simpleItems = new HashMap<>();
+    private static List<Item> simpleItems = new ArrayList<>();
 
     static {
         //Create simple items
@@ -30,8 +30,9 @@ public class HandlerItems {
         for(Class<?> c : annotated) {
             String name = c.getAnnotation(SimpleModItem.class).value();
             try {
-                Item item = ((Item) c.newInstance()).setRegistryName(PurpleMatter.MODID, name).setUnlocalizedName(PurpleMatter.MODID + "." + name);
-                simpleItems.put(item, name);
+                Item item = ((Item) c.newInstance());
+                item.setRegistryName(PurpleMatter.MODID, name).setUnlocalizedName(PurpleMatter.MODID + "." + name);
+                simpleItems.add(item);
             } catch (InstantiationException | IllegalAccessException | ClassCastException e ) {
                 e.printStackTrace();
             }
@@ -40,10 +41,10 @@ public class HandlerItems {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        simpleItems.forEach((item, name) -> registerSimpleItem(event.getRegistry(), item, name));
+        event.getRegistry().registerAll(simpleItems.toArray(new Item[0]));
     }
 
-    private static void registerSimpleItem(IForgeRegistry<Item> r, Item item, String name) {
+    private static void registerSimpleItem(IForgeRegistry<Item> r, Item item) {
         r.register(item);
     }
 
@@ -53,7 +54,7 @@ public class HandlerItems {
         simpleItems.forEach(HandlerItems::registerSimpleItemModel);
     }
 
-    private static void registerSimpleItemModel(Item item, String name) {
+    private static void registerSimpleItemModel(Item item) {
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
     }
 }
