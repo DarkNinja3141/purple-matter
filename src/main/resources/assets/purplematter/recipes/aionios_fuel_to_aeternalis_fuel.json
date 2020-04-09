@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "projecte:item.pe_philosophers_stone"
+        },
+        {
+            "item": "purplematter:aionios_fuel"
+        }
+    ],
+    "result": {
+        "item": "projecte:item.pe_fuel",
+        "data": 2,
+        "count": 4
+    }
+}
