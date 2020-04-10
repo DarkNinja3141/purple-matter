@@ -1,6 +1,13 @@
 #Items
 item.purplematter.purple_matter.name=Purple Matter
 item.purplematter.aionios_fuel.name=Aionios Fuel
+item.purplematter.hoch_star.name=Hoch Star
+item.purplematter.hoch_star_1.name=Hoch Star Ein
+item.purplematter.hoch_star_2.name=Hoch Star Zwei
+item.purplematter.hoch_star_3.name=Hoch Star Drei
+item.purplematter.hoch_star_4.name=Hoch Star Vier
+item.purplematter.hoch_star_5.name=Hoch Star Sphere
+item.purplematter.hoch_star_6.name=Hoch Star Omega
 
 #Blocks
 tile.purplematter.purple_matter_block.name=Purple Matter Block

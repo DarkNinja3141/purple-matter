@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "purplematter:items/hoch_star/hoch_star_4"
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "parent": "item/generated",
+    "overrides": [
+        {
+            "predicate": {
+                "purplematter:tier": 1
+            },
+            "model": "purplematter:item/hoch_star/hoch_star_1"
+        },
+        {
+            "predicate": {
+                "purplematter:tier": 2
+            },
+            "model": "purplematter:item/hoch_star/hoch_star_2"
+        },
+        {
+            "predicate": {
+                "purplematter:tier": 3
+            },
+            "model": "purplematter:item/hoch_star/hoch_star_3"
+        },
+        {
+            "predicate": {
+                "purplematter:tier": 4
+            },
+            "model": "purplematter:item/hoch_star/hoch_star_4"
+        },
+        {
+            "predicate": {
+                "purplematter:tier": 5
+            },
+            "model": "purplematter:item/hoch_star/hoch_star_5"
+        },
+        {
+            "predicate": {
+                "purplematter:tier": 6
+            },
+            "model": "purplematter:item/hoch_star/hoch_star_6"
+        }
+    ]
+}

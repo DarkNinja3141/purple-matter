@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "AKA",
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "item": "purplematter:aionios_fuel"
+        },
+        "K": {
+            "item": "projecte:item.pe_klein_star",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "purplematter:hoch_star"
+    }
+}
