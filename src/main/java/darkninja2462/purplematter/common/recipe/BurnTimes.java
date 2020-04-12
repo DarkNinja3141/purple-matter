@@ -1,4 +1,4 @@
-package darkninja2462.purplematter.common.recipes;
+package darkninja2462.purplematter.common.recipe;
 
 import moze_intel.projecte.utils.Constants;
 

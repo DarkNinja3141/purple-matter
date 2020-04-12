@@ -1,6 +1,6 @@
 package darkninja2462.purplematter.common.item.itemblock;
 
-import darkninja2462.purplematter.common.recipes.BurnTimes;
+import darkninja2462.purplematter.common.recipe.BurnTimes;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
