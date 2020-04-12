@@ -20,6 +20,11 @@ public class ItemNBTUtils {
         return namespace + ":" + key;
     }
 
+    public static boolean hasKey(@Nonnull ItemStack stack, String key) {
+        if(!stack.hasTagCompound()) return false;
+        return stack.getTagCompound() != null && stack.getTagCompound().hasKey(key);
+    }
+
     /**
      * Method reference that performs a function with return type void on an object of type O with two parameters of types T1 and T2
      * @param <O>
