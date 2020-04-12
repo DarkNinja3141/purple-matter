@@ -33,7 +33,7 @@ public class ItemHochStar extends Item implements IItemEmc {
     public static final long baseCapacity = EnumHochTier.EIN.capacity;
 
     public static final String nbtMass = ItemNBTUtils.makeKey(PurpleMatter.MODID, "mass");
-    public static final String nbtStars = ItemNBTUtils.makeKey(PurpleMatter.MODID, "stars");
+    public static final String nbtExtraCapacity = ItemNBTUtils.makeKey(PurpleMatter.MODID, "extra_capacity");
 
     public ItemHochStar() {
         this.setMaxStackSize(1);
@@ -83,22 +83,15 @@ public class ItemHochStar extends Item implements IItemEmc {
         return 0L;
     }
 
-    public static void setStars(ItemStack stack, Map<EnumKleinTier, Integer> stars) {
+    public static void setExtraCapacity(ItemStack stack, long extraCapacity) {
         NBTTagCompound nbt = ItemNBTUtils.getOrCreateCompound(stack);
-        Map<String, Integer> value = stars.entrySet().stream().collect(Collectors.toMap(e -> e.getKey().name, Map.Entry::getValue));
-        ItemNBTUtils.setIntegerMap(nbt, nbtStars, value);
+        nbt.setLong(nbtExtraCapacity, extraCapacity);
     }
 
-    private static EnumKleinTier stringToKlein(String str) {
-        return Arrays.stream(EnumKleinTier.values()).filter(e -> e.name.equals(str)).findAny().orElse(null);
-    }
-
-    public static Map<EnumKleinTier, Integer> getStars(ItemStack stack) {
-        if(stack.hasTagCompound()) {
-            Map<String, Integer> value = ItemNBTUtils.getIntegerMap(stack.getTagCompound(), nbtStars);
-            return value.entrySet().stream().collect(Collectors.toMap(e -> stringToKlein(e.getKey()), Map.Entry::getValue));
-        }
-        return new EnumMap<>(EnumKleinTier.class);
+    public static long getExtraCapacity(ItemStack stack) {
+        if(stack.hasTagCompound())
+            return Objects.requireNonNull(stack.getTagCompound()).getLong(nbtExtraCapacity);
+        return 0L;
     }
 
     public EnumHochTier getTier(@Nonnull ItemStack stack) {
@@ -165,10 +158,7 @@ public class ItemHochStar extends Item implements IItemEmc {
 
     @Override
     public long getMaximumEmc(@Nonnull ItemStack stack) {
-        Map<EnumKleinTier, Integer> stars = getStars(stack);
-        //Each star contributes emc capacity
-        long starCapacity = stars.entrySet().stream().mapToLong(e -> e.getValue() * MAX_KLEIN_EMC.get(e.getKey())).sum();
-        return baseCapacity + starCapacity;
+        return baseCapacity + getExtraCapacity(stack);
     }
 
 }
