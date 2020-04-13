@@ -1,0 +1,30 @@
+{
+    "type": "purplematter:hochstar_shapeless",
+    "ingredients": [
+        {
+            "item": "purplematter:hoch_star"
+        },
+        {
+            "item": "minecraft:coal",
+            "data": 0
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "ZWEI"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "ZWEI"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "ZWEI"
+        }
+    ],
+    "result": {
+        "item": "purplematter:hoch_star"
+    }
+}

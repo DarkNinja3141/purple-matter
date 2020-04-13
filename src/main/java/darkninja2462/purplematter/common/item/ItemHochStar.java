@@ -5,11 +5,8 @@ import darkninja2462.purplematter.mod.SimpleModItem;
 import darkninja2462.purplematter.util.ItemNBTUtils;
 import moze_intel.projecte.api.item.IItemEmc;
 import moze_intel.projecte.gameObjs.items.ItemPE;
-import moze_intel.projecte.gameObjs.items.KleinStar.EnumKleinTier;
 import moze_intel.projecte.utils.Constants;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,22 +14,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @SimpleModItem("hoch_star")
 public class ItemHochStar extends Item implements IItemEmc {
 
     //TODO make config option
-    public static final long baseCapacity = EnumHochTier.EIN.capacity;
+    public static final long baseCapacity = EnumHochTier.EIN.minCapacity;
 
-    public static final String nbtMass = ItemNBTUtils.makeKey(PurpleMatter.MODID, "mass");
     public static final String nbtExtraCapacity = ItemNBTUtils.makeKey(PurpleMatter.MODID, "extra_capacity");
 
     public ItemHochStar() {
@@ -50,37 +42,12 @@ public class ItemHochStar extends Item implements IItemEmc {
 
         public final String name;
         public final int tier;
-        public final long capacity;
+        public final long minCapacity;
         EnumHochTier(String name, int tier, long capacity) {
             this.name = name;
             this.tier = tier;
-            this.capacity = capacity;
+            this.minCapacity = capacity;
         }
-
-        public long getCapacity() {
-            return this.capacity;
-        }
-    }
-
-    private static Map<EnumKleinTier, Long> MAX_KLEIN_EMC = new EnumMap<>(EnumKleinTier.class);
-    static {
-        MAX_KLEIN_EMC.put(EnumKleinTier.EIN, Constants.MAX_KLEIN_EMC[0]);
-        MAX_KLEIN_EMC.put(EnumKleinTier.ZWEI, Constants.MAX_KLEIN_EMC[1]);
-        MAX_KLEIN_EMC.put(EnumKleinTier.DREI, Constants.MAX_KLEIN_EMC[2]);
-        MAX_KLEIN_EMC.put(EnumKleinTier.VIER, Constants.MAX_KLEIN_EMC[3]);
-        MAX_KLEIN_EMC.put(EnumKleinTier.SPHERE, Constants.MAX_KLEIN_EMC[4]);
-        MAX_KLEIN_EMC.put(EnumKleinTier.OMEGA, Constants.MAX_KLEIN_EMC[5]);
-    }
-
-    public static void setMass(ItemStack stack, long mass) {
-        NBTTagCompound nbt = ItemNBTUtils.getOrCreateCompound(stack);
-        nbt.setLong(nbtMass, mass);
-    }
-
-    public static long getMass(ItemStack stack) {
-        if(stack.hasTagCompound())
-            return Objects.requireNonNull(stack.getTagCompound()).getLong(nbtMass);
-        return 0L;
     }
 
     public static void setExtraCapacity(ItemStack stack, long extraCapacity) {
@@ -89,22 +56,26 @@ public class ItemHochStar extends Item implements IItemEmc {
     }
 
     public static long getExtraCapacity(ItemStack stack) {
-        if(stack.hasTagCompound())
+        if(ItemNBTUtils.hasKey(stack, nbtExtraCapacity))
             return Objects.requireNonNull(stack.getTagCompound()).getLong(nbtExtraCapacity);
         return 0L;
     }
 
+    public static long getFullCapacity(ItemStack stack) {
+        return baseCapacity + getExtraCapacity(stack);
+    }
+
     public EnumHochTier getTier(@Nonnull ItemStack stack) {
         long capacity = getMaximumEmc(stack);
-        if(capacity >= EnumHochTier.OMEGA.capacity)
+        if(capacity >= EnumHochTier.OMEGA.minCapacity)
             return EnumHochTier.OMEGA;
-        if(capacity >= EnumHochTier.SPHERE.capacity)
+        if(capacity >= EnumHochTier.SPHERE.minCapacity)
             return EnumHochTier.SPHERE;
-        if(capacity >= EnumHochTier.VIER.capacity)
+        if(capacity >= EnumHochTier.VIER.minCapacity)
             return EnumHochTier.VIER;
-        if(capacity >= EnumHochTier.DREI.capacity)
+        if(capacity >= EnumHochTier.DREI.minCapacity)
             return EnumHochTier.DREI;
-        if(capacity >= EnumHochTier.ZWEI.capacity)
+        if(capacity >= EnumHochTier.ZWEI.minCapacity)
             return EnumHochTier.ZWEI;
         return EnumHochTier.EIN;
     }

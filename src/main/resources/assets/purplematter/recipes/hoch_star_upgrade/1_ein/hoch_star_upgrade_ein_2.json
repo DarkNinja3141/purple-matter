@@ -1,0 +1,24 @@
+{
+    "type": "purplematter:hochstar_shapeless",
+    "ingredients": [
+        {
+            "item": "purplematter:hoch_star"
+        },
+        {
+            "item": "minecraft:redstone"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "EIN"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "EIN"
+        }
+    ],
+    "result": {
+        "item": "purplematter:hoch_star"
+    }
+}

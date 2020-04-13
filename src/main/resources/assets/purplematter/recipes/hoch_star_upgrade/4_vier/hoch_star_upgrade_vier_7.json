@@ -1,0 +1,50 @@
+{
+    "type": "purplematter:hochstar_shapeless",
+    "ingredients": [
+        {
+            "item": "purplematter:hoch_star"
+        },
+        {
+            "item": "projecte:item.pe_fuel",
+            "data": 1
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "VIER"
+        }
+    ],
+    "result": {
+        "item": "purplematter:hoch_star"
+    }
+}

@@ -12,3 +12,6 @@ item.purplematter.hoch_star_6.name=Hoch Star Omega
 #Blocks
 tile.purplematter.purple_matter_block.name=Purple Matter Block
 tile.purplematter.aionios_fuel_block.name=Aionios Fuel Block
+
+#Tooltips
+tooltip.purplematter.emccapacity=EMC Capacity

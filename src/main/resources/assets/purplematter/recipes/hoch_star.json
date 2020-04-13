@@ -10,8 +10,9 @@
             "item": "purplematter:aionios_fuel"
         },
         "K": {
-            "item": "projecte:item.pe_klein_star",
-            "data": 0
+            "type": "purplematter:kleinstar",
+            "match": "=",
+            "tier": "EIN"
         }
     },
     "result": {

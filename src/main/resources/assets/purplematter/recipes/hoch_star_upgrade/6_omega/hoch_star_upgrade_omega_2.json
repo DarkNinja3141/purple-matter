@@ -1,0 +1,24 @@
+{
+    "type": "purplematter:hochstar_shapeless",
+    "ingredients": [
+        {
+            "item": "purplematter:hoch_star"
+        },
+        {
+            "item": "purplematter:aionios_fuel"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "OMEGA"
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "OMEGA"
+        }
+    ],
+    "result": {
+        "item": "purplematter:hoch_star"
+    }
+}

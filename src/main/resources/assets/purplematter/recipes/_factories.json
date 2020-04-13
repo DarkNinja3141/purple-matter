@@ -1,5 +1,9 @@
 {
+    "ingredients": {
+        "kleinstar": "darkninja2462.purplematter.common.recipe.IngredientFactoryKleinStar"
+    },
     "recipes": {
-        "hochstar_shaped": "darkninja2462.purplematter.common.recipe.ShapedRecipesHochStar$Factory"
+        "hochstar_shaped": "darkninja2462.purplematter.common.recipe.ShapedRecipesHochStar$Factory",
+        "hochstar_shapeless": "darkninja2462.purplematter.common.recipe.ShapelessRecipesHochStar$Factory"
     }
 }

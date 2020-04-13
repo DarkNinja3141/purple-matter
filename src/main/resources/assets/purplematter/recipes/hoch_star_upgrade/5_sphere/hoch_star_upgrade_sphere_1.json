@@ -1,0 +1,20 @@
+{
+    "type": "purplematter:hochstar_shapeless",
+    "ingredients": [
+        {
+            "item": "purplematter:hoch_star"
+        },
+        {
+            "item": "projecte:item.pe_fuel",
+            "data": 2
+        },
+        {
+            "type": "purplematter:kleinstar",
+            "match": "<=",
+            "tier": "SPHERE"
+        }
+    ],
+    "result": {
+        "item": "purplematter:hoch_star"
+    }
+}
