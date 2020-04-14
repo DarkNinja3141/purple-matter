@@ -2,6 +2,7 @@ package darkninja2462.purplematter.common.item;
 
 import darkninja2462.purplematter.PurpleMatter;
 import darkninja2462.purplematter.config.PurpleMatterConfig;
+import darkninja2462.purplematter.handlers.HandlerCreativeTabs;
 import darkninja2462.purplematter.mod.SimpleModItem;
 import darkninja2462.purplematter.util.ItemNBTUtils;
 import moze_intel.projecte.api.item.IItemEmc;
@@ -26,6 +27,7 @@ public class ItemHochStar extends Item implements IItemEmc {
     public static final String nbtExtraCapacity = ItemNBTUtils.makeKey(PurpleMatter.MODID, "extra_capacity");
 
     public ItemHochStar() {
+        this.setCreativeTab(HandlerCreativeTabs.PURPLE_MATTER);
         this.setMaxStackSize(1);
         this.addPropertyOverride(new ResourceLocation(PurpleMatter.MODID, "tier"), this::getPropertyTier);
     }

@@ -19,6 +19,9 @@ tile.purplematter.aionios_fuel_block.name=Aionios Fuel Block
 #Tooltips
 tooltip.purplematter.emccapacity=EMC Capacity
 
+#Creative Tabs
+itemGroup.purple_matter=Purple Matter
+
 #Config
 config.purplematter.item=Items
 config.purplematter.item.tooltip=Options for various items

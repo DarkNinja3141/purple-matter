@@ -1,5 +1,6 @@
 package darkninja2462.purplematter.common.item;
 
+import darkninja2462.purplematter.handlers.HandlerCreativeTabs;
 import darkninja2462.purplematter.mod.SimpleModItem;
 import moze_intel.projecte.api.item.IItemEmc;
 import moze_intel.projecte.gameObjs.items.ItemPE;
@@ -12,6 +13,7 @@ import javax.annotation.Nonnull;
 public class ItemGrosstenCube extends Item implements IItemEmc {
 
     public ItemGrosstenCube() {
+        this.setCreativeTab(HandlerCreativeTabs.PURPLE_MATTER);
         this.setMaxStackSize(1);
     }
 
