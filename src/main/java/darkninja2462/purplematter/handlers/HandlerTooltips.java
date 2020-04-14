@@ -23,7 +23,6 @@ public class HandlerTooltips {
     public static void onTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         if (stack.isEmpty()) return;
-        //noinspection ConstantConditions
         if(stack.getItem() == hoch_star) {
             long capacity = ItemHochStar.getFullCapacity(stack);
             event.getToolTip().add(TextFormatting.YELLOW + I18n.format(TRANSLATEKEY_STOREDEMC_TOOLTIP) + ": " + TextFormatting.RESET + Constants.EMC_FORMATTER.format(capacity));

@@ -1,0 +1,24 @@
+{
+    "type": "purplematter:itememc_shaped",
+    "pattern": [
+        "POP",
+        "OHO",
+        "POP"
+    ],
+    "key": {
+        "H": {
+            "item": "purplematter:hoch_star"
+        },
+        "P": {
+            "item": "purplematter:purple_matter"
+        },
+        "O": {
+            "type": "purplematter:kleinstar",
+            "match": "=",
+            "tier": "OMEGA"
+        }
+    },
+    "result": {
+        "item": "purplematter:grossten_cube"
+    }
+}

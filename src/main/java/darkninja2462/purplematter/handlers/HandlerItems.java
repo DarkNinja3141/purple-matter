@@ -1,6 +1,8 @@
 package darkninja2462.purplematter.handlers;
 
 import darkninja2462.purplematter.PurpleMatter;
+import darkninja2462.purplematter.common.item.ItemGrosstenCube;
+import darkninja2462.purplematter.common.item.ItemHochStar;
 import darkninja2462.purplematter.mod.SimpleModItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -21,13 +23,14 @@ import java.util.*;
 @GameRegistry.ObjectHolder(PurpleMatter.MODID)
 public class HandlerItems {
 
+    public static final class ItemNames {
+        public static final String HOCH_STAR = "hoch_star";
+        public static final String GROSSTEN_CUBE = "grossten_cube";
+    }
+
     //A list of all Item classes that are annotated with @SimpleModItem
-    //Maps an item to its registry name
-    private static List<Item> simpleItems = new ArrayList<>();
-
-    @GameRegistry.ObjectHolder("hoch_star")
-    public static final Item hoch_star = null;
-
+    //Maps a registry name to its item
+    private static Map<String, Item> items = new HashMap<>();
     static {
         //Create simple items
         Reflections reflections = new Reflections("darkninja2462.purplematter");
@@ -37,16 +40,22 @@ public class HandlerItems {
             try {
                 Item item = ((Item) c.newInstance());
                 item.setRegistryName(PurpleMatter.MODID, name).setUnlocalizedName(PurpleMatter.MODID + "." + name);
-                simpleItems.add(item);
+                items.put(name, item);
             } catch (InstantiationException | IllegalAccessException | ClassCastException e ) {
                 e.printStackTrace();
             }
         }
     }
 
+    //Individual reference to each item if needed
+    public static final ItemHochStar hoch_star;
+    static {
+        hoch_star = (ItemHochStar) items.get(ItemNames.HOCH_STAR);
+    }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(simpleItems.toArray(new Item[0]));
+        event.getRegistry().registerAll(items.values().toArray(new Item[0]));
     }
 
     private static void registerSimpleItem(IForgeRegistry<Item> r, Item item) {
@@ -56,7 +65,7 @@ public class HandlerItems {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
-        simpleItems.forEach(HandlerItems::registerSimpleItemModel);
+        items.values().forEach(HandlerItems::registerSimpleItemModel);
     }
 
     private static void registerSimpleItemModel(Item item) {

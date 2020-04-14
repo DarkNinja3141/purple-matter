@@ -3,6 +3,8 @@
         "kleinstar": "darkninja2462.purplematter.common.recipe.IngredientFactoryKleinStar"
     },
     "recipes": {
+        "itememc_shaped": "darkninja2462.purplematter.common.recipe.ShapedRecipesItemEMC$Factory",
+        "itememc_shapeless": "darkninja2462.purplematter.common.recipe.ShapelessRecipesItemEMC$Factory",
         "hochstar_shaped": "darkninja2462.purplematter.common.recipe.ShapedRecipesHochStar$Factory",
         "hochstar_shapeless": "darkninja2462.purplematter.common.recipe.ShapelessRecipesHochStar$Factory"
     }
