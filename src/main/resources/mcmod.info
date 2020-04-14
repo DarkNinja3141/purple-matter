@@ -8,8 +8,8 @@
         "url": "",
         "updateUrl": "",
         "authorList": ["DarkNinja2462"],
-        "credits": "The Forge and FML guys, for making this example",
-        "logoFile": "",
+        "credits": "The ProjectE team, for making the mod that made this all possible",
+        "logoFile": "logo.png",
         "screenshots": [],
         "dependencies": ["projecte"],
         "requiredMods": ["projecte"]
