@@ -20,5 +20,11 @@
     },
     "result": {
         "item": "purplematter:grossten_cube"
-    }
+    },
+    "conditions": [
+        {
+            "type": "purplematter:config",
+            "key": "grosstenCube"
+        }
+    ]
 }

@@ -19,17 +19,15 @@ public class PurpleMatter
     public static final String NAME = "Purple Matter";
     public static final String VERSION = "0.0.2";
 
-    private static Logger logger;
+    public static Logger LOGGER;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
-        logger = event.getModLog();
+    public void preInit(FMLPreInitializationEvent event) {
+        LOGGER = event.getModLog();
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
 
     }
 

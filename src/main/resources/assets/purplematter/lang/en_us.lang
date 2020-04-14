@@ -1,3 +1,5 @@
+#PARSE_ESCAPES
+
 #Items
 item.purplematter.purple_matter.name=Purple Matter
 item.purplematter.aionios_fuel.name=Aionios Fuel
@@ -16,3 +18,13 @@ tile.purplematter.aionios_fuel_block.name=Aionios Fuel Block
 
 #Tooltips
 tooltip.purplematter.emccapacity=EMC Capacity
+
+#Config
+config.purplematter.item=Items
+config.purplematter.item.tooltip=Options for various items
+config.purplematter.item.hochStarCapacity=Hoch Star Capacity
+config.purplematter.item.hochStarCapacity.tooltip=Hoch Star EMC capacity when first crafted\nDefaults to the Klein Star Ein capacity
+config.purplematter.crafting=Crafting
+config.purplematter.crafting.tooltip=Crafting options\nMainly for enabling/disabling recipes
+config.purplematter.crafting.grosstenCube=Grossten Cube
+config.purplematter.crafting.grosstenCube.tooltip=Enable Grossten Cube crafting

@@ -1,6 +1,7 @@
 package darkninja2462.purplematter.common.item;
 
 import darkninja2462.purplematter.PurpleMatter;
+import darkninja2462.purplematter.config.PurpleMatterConfig;
 import darkninja2462.purplematter.mod.SimpleModItem;
 import darkninja2462.purplematter.util.ItemNBTUtils;
 import moze_intel.projecte.api.item.IItemEmc;
@@ -21,9 +22,6 @@ import java.util.*;
 
 @SimpleModItem("hoch_star")
 public class ItemHochStar extends Item implements IItemEmc {
-
-    //TODO make config option
-    public static final long baseCapacity = EnumHochTier.EIN.minCapacity;
 
     public static final String nbtExtraCapacity = ItemNBTUtils.makeKey(PurpleMatter.MODID, "extra_capacity");
 
@@ -62,7 +60,7 @@ public class ItemHochStar extends Item implements IItemEmc {
     }
 
     public static long getFullCapacity(ItemStack stack) {
-        return baseCapacity + getExtraCapacity(stack);
+        return ((long)PurpleMatterConfig.item.hochStarCapacity) + getExtraCapacity(stack);
     }
 
     public EnumHochTier getTier(@Nonnull ItemStack stack) {
@@ -101,9 +99,9 @@ public class ItemHochStar extends Item implements IItemEmc {
         long starEmc = ItemPE.getEmc(stack);
 
         if (starEmc == 0)
-        {
             return 1.0D;
-        }
+        if (starEmc > getMaximumEmc(stack))
+            return 0.0D;
 
         return 1.0D - starEmc / (double) getMaximumEmc(stack);
     }
@@ -129,7 +127,7 @@ public class ItemHochStar extends Item implements IItemEmc {
 
     @Override
     public long getMaximumEmc(@Nonnull ItemStack stack) {
-        return baseCapacity + getExtraCapacity(stack);
+        return getFullCapacity(stack);
     }
 
 }
