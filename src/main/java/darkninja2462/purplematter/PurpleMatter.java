@@ -1,5 +1,6 @@
 package darkninja2462.purplematter;
 
+import darkninja2462.purplematter.handlers.HandlerBlocks;
 import darkninja2462.purplematter.handlers.HandlerItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -24,6 +25,8 @@ public class PurpleMatter
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LOGGER = event.getModLog();
+        HandlerItems.findItems(event.getAsmData());
+        HandlerBlocks.findBlocks(event.getAsmData());
     }
 
     @EventHandler

@@ -10,12 +10,12 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.reflections.Reflections;
 
 import java.util.*;
 
@@ -31,25 +31,22 @@ public class HandlerItems {
     //A list of all Item classes that are annotated with @SimpleModItem
     //Maps a registry name to its item
     private static Map<String, Item> items = new HashMap<>();
-    static {
+    //Individual reference to each item if needed
+    public static ItemHochStar hoch_star;
+
+    public static void findItems(ASMDataTable data) {
         //Create simple items
-        Reflections reflections = new Reflections("darkninja2462.purplematter");
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(SimpleModItem.class);
-        for(Class<?> c : annotated) {
-            String name = c.getAnnotation(SimpleModItem.class).value();
+        for(ASMDataTable.ASMData target : data.getAll(SimpleModItem.class.getName())) {
             try {
+                Class<?> c = Class.forName(target.getClassName());
+                String name = c.getAnnotation(SimpleModItem.class).value();
                 Item item = ((Item) c.newInstance());
                 item.setRegistryName(PurpleMatter.MODID, name).setUnlocalizedName(PurpleMatter.MODID + "." + name);
                 items.put(name, item);
-            } catch (InstantiationException | IllegalAccessException | ClassCastException e ) {
-                e.printStackTrace();
+            } catch (InstantiationException | IllegalAccessException | ClassCastException | ClassNotFoundException e ) {
+                PurpleMatter.LOGGER.error("Error loading item", e);
             }
         }
-    }
-
-    //Individual reference to each item if needed
-    public static final ItemHochStar hoch_star;
-    static {
         hoch_star = (ItemHochStar) items.get(ItemNames.HOCH_STAR);
     }
 

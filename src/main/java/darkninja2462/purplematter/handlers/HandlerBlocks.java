@@ -10,11 +10,11 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -29,21 +29,20 @@ public class HandlerBlocks {
     //Maps a Block to its ItemBlock
     private static Map<Block, ItemBlock> simpleBlocks = new HashMap<>();
 
-    static {
+    public static void findBlocks(ASMDataTable data) {
         //Create simple blocks
-        Reflections reflections = new Reflections("darkninja2462.purplematter");
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(SimpleModBlock.class);
-        for(Class<?> c : annotated) {
-            String name = c.getAnnotation(SimpleModBlock.class).value();
-            Class<? extends ItemBlock> itemBlockClass = c.getAnnotation(SimpleModBlock.class).itemBlock();
+        for(ASMDataTable.ASMData target : data.getAll(SimpleModBlock.class.getName())) {
             try {
+                Class<?> c = Class.forName(target.getClassName());
+                String name = c.getAnnotation(SimpleModBlock.class).value();
+                Class<? extends ItemBlock> itemBlockClass = c.getAnnotation(SimpleModBlock.class).itemBlock();
                 Block block = ((Block) c.newInstance());
                 block.setRegistryName(PurpleMatter.MODID, name).setUnlocalizedName(PurpleMatter.MODID + "." + name);
                 ItemBlock itemBlock = itemBlockClass.getConstructor(Block.class).newInstance(block);
                 itemBlock.setRegistryName(Objects.requireNonNull(block.getRegistryName()));
                 simpleBlocks.put(block, itemBlock);
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | ClassCastException e ) {
-                e.printStackTrace();
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | ClassCastException | ClassNotFoundException e ) {
+                PurpleMatter.LOGGER.error("Error loading block", e);
             }
         }
     }
