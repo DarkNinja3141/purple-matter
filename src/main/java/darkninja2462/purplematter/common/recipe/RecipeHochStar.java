@@ -25,6 +25,9 @@ public class RecipeHochStar {
                 if (s.getItem() == hoch_star) {
                     capacity += ItemHochStar.getExtraCapacity(s);
                 }
+                if (s.getItem() == kleinStars) {
+                    capacity += EMCHelper.getKleinStarMaxEmc(s);
+                }
             }
         }
         if(result1.getItem() == hoch_star) {
