@@ -8,6 +8,8 @@ import darkninja2462.purplematter.util.ItemNBTUtils;
 import moze_intel.projecte.api.item.IItemEmc;
 import moze_intel.projecte.gameObjs.items.ItemPE;
 import moze_intel.projecte.utils.Constants;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,12 +26,16 @@ import java.util.*;
 @SimpleModItem("hoch_star")
 public class ItemHochStar extends Item implements IItemEmc {
 
-    public static final String nbtExtraCapacity = ItemNBTUtils.makeKey(PurpleMatter.MODID, "extra_capacity");
+    public static final String PROPERTY_TIER = "tier";
+    public static final String PROPERTY_OVERCHARGED = "overcharged";
+
+    public static final String NBT_EXTRA_CAPACITY = ItemNBTUtils.makeKey(PurpleMatter.MODID, "extra_capacity");
 
     public ItemHochStar() {
         this.setCreativeTab(HandlerCreativeTabs.PURPLE_MATTER);
         this.setMaxStackSize(1);
-        this.addPropertyOverride(new ResourceLocation(PurpleMatter.MODID, "tier"), this::getPropertyTier);
+        this.addPropertyOverride(new ResourceLocation(PurpleMatter.MODID, PROPERTY_TIER), this::getPropertyTier);
+        this.addPropertyOverride(new ResourceLocation(PurpleMatter.MODID, PROPERTY_OVERCHARGED), this::getPropertyOvercharged);
     }
 
     public enum EnumHochTier {
@@ -52,12 +58,12 @@ public class ItemHochStar extends Item implements IItemEmc {
 
     public static void setExtraCapacity(ItemStack stack, long extraCapacity) {
         NBTTagCompound nbt = ItemNBTUtils.getOrCreateCompound(stack);
-        nbt.setLong(nbtExtraCapacity, extraCapacity);
+        nbt.setLong(NBT_EXTRA_CAPACITY, extraCapacity);
     }
 
     public static long getExtraCapacity(ItemStack stack) {
-        if(ItemNBTUtils.hasKey(stack, nbtExtraCapacity))
-            return Objects.requireNonNull(stack.getTagCompound()).getLong(nbtExtraCapacity);
+        if(ItemNBTUtils.hasKey(stack, NBT_EXTRA_CAPACITY))
+            return Objects.requireNonNull(stack.getTagCompound()).getLong(NBT_EXTRA_CAPACITY);
         return 0L;
     }
 
@@ -85,6 +91,11 @@ public class ItemHochStar extends Item implements IItemEmc {
         return getTier(stack).tier;
     }
 
+    @SideOnly(Side.CLIENT)
+    public float getPropertyOvercharged(@Nonnull ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+        return isOvercharged(stack) ? 1F : 0F;
+    }
+
     @Nonnull
     @Override
     public String getUnlocalizedName(ItemStack stack) {
@@ -98,7 +109,7 @@ public class ItemHochStar extends Item implements IItemEmc {
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        long starEmc = ItemPE.getEmc(stack);
+        long starEmc = getStoredEmc(stack);
 
         if (starEmc == 0)
             return 1.0D;
@@ -106,6 +117,19 @@ public class ItemHochStar extends Item implements IItemEmc {
             return 0.0D;
 
         return 1.0D - starEmc / (double) getMaximumEmc(stack);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack) {
+        return isOvercharged(stack);
+    }
+
+    public static final String TRANSLATEKEY_OVERCHARGED_TOOLTIP = "tooltip.purplematter.hoch_star.overcharged";
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        if(isOvercharged(stack))
+            tooltip.add(I18n.format(TRANSLATEKEY_OVERCHARGED_TOOLTIP));
     }
 
     @Override
@@ -127,9 +151,17 @@ public class ItemHochStar extends Item implements IItemEmc {
         return ItemPE.getEmc(stack);
     }
 
+    public static void setStoredEmc(@Nonnull ItemStack stack, long toSet) {
+        ItemPE.setEmc(stack, toSet);
+    }
+
     @Override
     public long getMaximumEmc(@Nonnull ItemStack stack) {
         return getFullCapacity(stack);
+    }
+
+    public boolean isOvercharged(@Nonnull ItemStack stack) {
+        return getStoredEmc(stack) > getMaximumEmc(stack);
     }
 
 }

@@ -9,13 +9,13 @@ import net.minecraftforge.common.crafting.JsonContext;
 import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
-public class ShapelessRecipeHochStar extends ShapelessRecipeItemEMC {
+public class ShapelessRecipeHochStar extends ShapelessRecipe {
 
-    public ShapelessRecipeHochStar(ShapelessRecipeItemEMC recipe, BooleanSupplier enabledSupplier) {
+    public ShapelessRecipeHochStar(ShapelessRecipe recipe, BooleanSupplier enabledSupplier) {
         super(recipe, enabledSupplier);
     }
 
-    public ShapelessRecipeHochStar(ShapelessRecipeItemEMC recipe) {
+    public ShapelessRecipeHochStar(ShapelessRecipe recipe) {
         super(recipe);
     }
 
@@ -26,7 +26,7 @@ public class ShapelessRecipeHochStar extends ShapelessRecipeItemEMC {
         return RecipeHochStar.getCraftingResult(inv, result);
     }
 
-    public static class Factory extends ShapelessRecipeItemEMC.Factory {
+    public static class Factory extends ShapelessRecipe.Factory {
         @Override
         public ShapelessRecipeHochStar parse(JsonContext context, JsonObject json) {
             return new ShapelessRecipeHochStar(super.parse(context, json));

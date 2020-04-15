@@ -17,6 +17,7 @@ tile.purplematter.purple_matter_block.name=Purple Matter Block
 tile.purplematter.aionios_fuel_block.name=Aionios Fuel Block
 
 #Tooltips
+tooltip.purplematter.hoch_star.overcharged=Overcharged
 tooltip.purplematter.emccapacity=EMC Capacity
 
 #Creative Tabs
