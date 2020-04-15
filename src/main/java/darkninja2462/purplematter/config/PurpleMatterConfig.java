@@ -34,7 +34,6 @@ public final class PurpleMatterConfig {
     })
     public static final Crafting crafting = new Crafting();
     public static final class Crafting {
-        @Config.RequiresMcRestart
         @Config.LangKey("config.purplematter.crafting.grosstenCube")
         @Config.Comment({
                 "Enable Grossten Cube crafting",

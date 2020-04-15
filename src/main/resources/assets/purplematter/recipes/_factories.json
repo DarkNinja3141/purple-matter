@@ -1,14 +1,17 @@
 {
     "ingredients": {
-        "kleinstar": "darkninja2462.purplematter.common.recipe.IngredientFactoryKleinStar"
+        "kleinstar": "darkninja2462.purplematter.common.recipe.ingredient.IngredientFactoryKleinStar"
     },
     "recipes": {
-        "itememc_shaped": "darkninja2462.purplematter.common.recipe.ShapedRecipesItemEMC$Factory",
-        "itememc_shapeless": "darkninja2462.purplematter.common.recipe.ShapelessRecipesItemEMC$Factory",
-        "hochstar_shaped": "darkninja2462.purplematter.common.recipe.ShapedRecipesHochStar$Factory",
-        "hochstar_shapeless": "darkninja2462.purplematter.common.recipe.ShapelessRecipesHochStar$Factory"
+        "crafting_shaped": "darkninja2462.purplematter.common.recipe.shaped.ShapedRecipe$Factory",
+        "crafting_shapeless": "darkninja2462.purplematter.common.recipe.shapeless.ShapelessRecipe$Factory",
+        "itememc_shaped": "darkninja2462.purplematter.common.recipe.shaped.ShapedRecipeItemEMC$Factory",
+        "itememc_shapeless": "darkninja2462.purplematter.common.recipe.shapeless.ShapelessRecipeItemEMC$Factory",
+        "hochstar_shaped": "darkninja2462.purplematter.common.recipe.shaped.ShapedRecipeHochStar$Factory",
+        "hochstar_shapeless": "darkninja2462.purplematter.common.recipe.shapeless.ShapelessRecipeHochStar$Factory"
     },
     "conditions": {
-        "config": "darkninja2462.purplematter.common.recipe.ConditionFactoryConfig"
+        "dynamic": "darkninja2462.purplematter.common.recipe.condition.ConditionFactoryDynamic",
+        "config": "darkninja2462.purplematter.common.recipe.condition.ConditionFactoryConfig"
     }
 }

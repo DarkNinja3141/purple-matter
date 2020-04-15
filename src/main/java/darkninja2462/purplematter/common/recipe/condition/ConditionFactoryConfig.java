@@ -1,4 +1,4 @@
-package darkninja2462.purplematter.common.recipe;
+package darkninja2462.purplematter.common.recipe.condition;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;

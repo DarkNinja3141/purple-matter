@@ -23,8 +23,11 @@
     },
     "conditions": [
         {
-            "type": "purplematter:config",
-            "key": "grosstenCube"
+            "type": "purplematter:dynamic",
+            "condition": {
+                "type": "purplematter:config",
+                "key": "grosstenCube"
+            }
         }
     ]
 }

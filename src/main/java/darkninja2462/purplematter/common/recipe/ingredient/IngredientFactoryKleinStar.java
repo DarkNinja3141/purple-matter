@@ -1,8 +1,7 @@
-package darkninja2462.purplematter.common.recipe;
+package darkninja2462.purplematter.common.recipe.ingredient;
 
 import com.google.common.collect.Lists;
 import com.google.gson.*;
-import darkninja2462.purplematter.PurpleMatter;
 import darkninja2462.purplematter.util.EnumKleinTier;
 import darkninja2462.purplematter.util.PredicatesComparable;
 import net.minecraft.item.ItemStack;
@@ -10,8 +9,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.JsonUtils;
 import net.minecraftforge.common.crafting.IIngredientFactory;
 import net.minecraftforge.common.crafting.JsonContext;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nonnull;
 import java.util.*;
