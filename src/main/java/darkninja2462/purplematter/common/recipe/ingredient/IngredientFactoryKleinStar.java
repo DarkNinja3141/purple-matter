@@ -25,16 +25,6 @@ public class IngredientFactoryKleinStar implements IIngredientFactory {
     private static final String JSONKEY_MATCHES = "match";
     private static final String JSONKEY_TIER = "tier";
 
-    private static final Map<String, Function<EnumKleinTier, Predicate<EnumKleinTier>>> matchTypes = new HashMap<>();
-    static {
-        matchTypes.put("=", PredicatesComparable::isEqual);
-        matchTypes.put("!=", PredicatesComparable::isNotEqual);
-        matchTypes.put(">", PredicatesComparable::isGreaterThan);
-        matchTypes.put(">=", PredicatesComparable::isGreaterThanOrEqualTo);
-        matchTypes.put("<", PredicatesComparable::isLessThan);
-        matchTypes.put("<=", PredicatesComparable::isLessThanOrEqualTo);
-    }
-
     /**
      * Converts a JSON int or string to an EnumKleinTier, using the tier's damage (for ints) or name (for strings)
      */
@@ -50,8 +40,12 @@ public class IngredientFactoryKleinStar implements IIngredientFactory {
     public Ingredient parse(JsonContext context, JsonObject json) {
         //Match type (ex. klein stars equal to a certain tier or perhaps less than a certain tier)
         String match = JsonUtils.getString(json, JSONKEY_MATCHES);
-        Function<EnumKleinTier, Predicate<EnumKleinTier>> predicateSupplier = matchTypes.getOrDefault(match, null);
-        if(predicateSupplier == null) throw new JsonParseException("Invalid match type");
+        Function<EnumKleinTier, Predicate<EnumKleinTier>> predicateSupplier;
+        try {
+             predicateSupplier = PredicatesComparable.of(match);
+        } catch (IllegalArgumentException e) {
+            throw new JsonParseException("Unknown match type: " + match, e);
+        }
 
         //List of tiers (or single tier)
         List<EnumKleinTier> tiers;
