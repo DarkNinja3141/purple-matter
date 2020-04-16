@@ -1,7 +1,7 @@
 package darkninja2462.purplematter.common.recipe.shapeless;
 
 import com.google.gson.JsonObject;
-import darkninja2462.purplematter.common.recipe.IConfigurableRecipe;
+import darkninja2462.purplematter.common.recipe.IDynamicRecipe;
 import darkninja2462.purplematter.common.recipe.CraftingUtils;
 import darkninja2462.purplematter.util.Suppliers;
 import net.minecraft.inventory.InventoryCrafting;
@@ -17,7 +17,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
-public class ShapelessRecipe extends ShapelessOreRecipe implements IConfigurableRecipe {
+public class ShapelessRecipe extends ShapelessOreRecipe implements IDynamicRecipe {
 
     private BooleanSupplier enabledSupplier;
 
@@ -43,8 +43,8 @@ public class ShapelessRecipe extends ShapelessOreRecipe implements IConfigurable
     }
 
     @Override
-    public boolean isEnabled() {
-        return enabledSupplier.getAsBoolean();
+    public BooleanSupplier getEnabledSupplier() {
+        return enabledSupplier;
     }
 
     @Override
@@ -52,16 +52,18 @@ public class ShapelessRecipe extends ShapelessOreRecipe implements IConfigurable
         return isEnabled() && super.matches(inv, world);
     }
 
-    public static ShapelessRecipe factory(JsonContext context, JsonObject json) {
-        ShapelessOreRecipe recipe = ShapelessOreRecipe.factory(context, json);
-        BooleanSupplier enabledSupplier = CraftingUtils.processDynamicConditions(context, json);
-        return (enabledSupplier != null) ? new ShapelessRecipe(recipe, enabledSupplier) : new ShapelessRecipe(recipe);
+    @Nonnull
+    @Override
+    public ItemStack getCraftingResult(@Nonnull InventoryCrafting var1) {
+        return isEnabled() ? super.getCraftingResult(var1) : ItemStack.EMPTY;
     }
 
-    public static class Factory implements IRecipeFactory {
+    public static class Factory implements IRecipeFactory, IDynamicRecipe.Factory {
         @Override
         public ShapelessRecipe parse(JsonContext context, JsonObject json) {
-            return ShapelessRecipe.factory(context, json);
+            ShapelessOreRecipe recipe = ShapelessOreRecipe.factory(context, json);
+            BooleanSupplier enabledSupplier = parseConditions(context, json);
+            return (enabledSupplier != null) ? new ShapelessRecipe(recipe, enabledSupplier) : new ShapelessRecipe(recipe);
         }
     }
 

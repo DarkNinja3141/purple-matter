@@ -1,7 +1,7 @@
 package darkninja2462.purplematter.common.recipe.shaped;
 
 import com.google.gson.JsonObject;
-import darkninja2462.purplematter.common.recipe.IConfigurableRecipe;
+import darkninja2462.purplematter.common.recipe.IDynamicRecipe;
 import darkninja2462.purplematter.common.recipe.CraftingUtils;
 import darkninja2462.purplematter.util.Suppliers;
 import net.minecraft.inventory.InventoryCrafting;
@@ -16,7 +16,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
-public class ShapedRecipe extends ShapedOreRecipe implements IConfigurableRecipe {
+public class ShapedRecipe extends ShapedOreRecipe implements IDynamicRecipe {
 
     protected BooleanSupplier enabledSupplier;
 
@@ -42,8 +42,8 @@ public class ShapedRecipe extends ShapedOreRecipe implements IConfigurableRecipe
     }
 
     @Override
-    public boolean isEnabled() {
-        return enabledSupplier.getAsBoolean();
+    public BooleanSupplier getEnabledSupplier() {
+        return enabledSupplier;
     }
 
     @Override
@@ -57,16 +57,12 @@ public class ShapedRecipe extends ShapedOreRecipe implements IConfigurableRecipe
         return isEnabled() ? super.getCraftingResult(var1) : ItemStack.EMPTY;
     }
 
-    public static ShapedRecipe factory(JsonContext context, JsonObject json) {
-        ShapedOreRecipe recipe = ShapedOreRecipe.factory(context, json);
-        BooleanSupplier enabledSupplier = CraftingUtils.processDynamicConditions(context, json);
-        return (enabledSupplier != null) ? new ShapedRecipe(recipe, enabledSupplier) : new ShapedRecipe(recipe);
-    }
-
-    public static class Factory implements IRecipeFactory {
+    public static class Factory implements IRecipeFactory, IDynamicRecipe.Factory {
         @Override
         public ShapedRecipe parse(JsonContext context, JsonObject json) {
-            return ShapedRecipe.factory(context, json);
+            ShapedOreRecipe recipe = ShapedOreRecipe.factory(context, json);
+            BooleanSupplier enabledSupplier = parseConditions(context, json);
+            return (enabledSupplier != null) ? new ShapedRecipe(recipe, enabledSupplier) : new ShapedRecipe(recipe);
         }
     }
 
