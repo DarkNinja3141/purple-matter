@@ -7,7 +7,7 @@ import net.minecraftforge.common.crafting.JsonContext;
 
 import java.util.function.BooleanSupplier;
 
-public interface IDynamicRecipe extends IRecipe {
+public interface IEnabledRecipe extends IRecipe {
 
     default boolean isEnabled() {
         return getEnabledSupplier().getAsBoolean();

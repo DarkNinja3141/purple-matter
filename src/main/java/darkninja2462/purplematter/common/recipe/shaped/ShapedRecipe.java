@@ -1,7 +1,7 @@
 package darkninja2462.purplematter.common.recipe.shaped;
 
 import com.google.gson.JsonObject;
-import darkninja2462.purplematter.common.recipe.IDynamicRecipe;
+import darkninja2462.purplematter.common.recipe.IEnabledRecipe;
 import darkninja2462.purplematter.common.recipe.CraftingUtils;
 import darkninja2462.purplematter.util.Suppliers;
 import net.minecraft.inventory.InventoryCrafting;
@@ -16,7 +16,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import javax.annotation.Nonnull;
 import java.util.function.BooleanSupplier;
 
-public class ShapedRecipe extends ShapedOreRecipe implements IDynamicRecipe {
+public class ShapedRecipe extends ShapedOreRecipe implements IEnabledRecipe {
 
     protected BooleanSupplier enabledSupplier;
 
@@ -57,7 +57,7 @@ public class ShapedRecipe extends ShapedOreRecipe implements IDynamicRecipe {
         return isEnabled() ? super.getCraftingResult(var1) : ItemStack.EMPTY;
     }
 
-    public static class Factory implements IRecipeFactory, IDynamicRecipe.Factory {
+    public static class Factory implements IRecipeFactory, IEnabledRecipe.Factory {
         @Override
         public ShapedRecipe parse(JsonContext context, JsonObject json) {
             ShapedOreRecipe recipe = ShapedOreRecipe.factory(context, json);
