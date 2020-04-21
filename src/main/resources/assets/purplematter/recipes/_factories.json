@@ -8,7 +8,8 @@
         "itememc_shaped": "darkninja2462.purplematter.common.recipe.shaped.ShapedRecipeItemEMC$Factory",
         "itememc_shapeless": "darkninja2462.purplematter.common.recipe.shapeless.ShapelessRecipeItemEMC$Factory",
         "hochstar_shaped": "darkninja2462.purplematter.common.recipe.shaped.ShapedRecipeHochStar$Factory",
-        "hochstar_shapeless": "darkninja2462.purplematter.common.recipe.shapeless.ShapelessRecipeHochStar$Factory"
+        "hochstar_shapeless": "darkninja2462.purplematter.common.recipe.shapeless.ShapelessRecipeHochStar$Factory",
+        "hochstar_upgrade": "darkninja2462.purplematter.common.recipe.RecipeHochStarUpgrade$Factory"
     },
     "conditions": {
         "dynamic": "darkninja2462.purplematter.common.recipe.condition.ConditionFactoryDynamic",

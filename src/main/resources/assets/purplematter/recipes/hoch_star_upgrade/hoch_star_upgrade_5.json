@@ -1,0 +1,21 @@
+{
+    "type": "purplematter:hochstar_upgrade",
+    "hoch_star": {
+        "item": "purplematter:hoch_star"
+    },
+    "klein_star": {
+        "type": "purplematter:kleinstar",
+        "match": "<=",
+        "tier": "SPHERE"
+    },
+    "klein_star_quantity": {
+        "match": ">",
+        "quantity": 0
+    },
+    "ingredients": [
+        {
+            "item": "projecte:item.pe_fuel",
+            "data": 2
+        }
+    ]
+}

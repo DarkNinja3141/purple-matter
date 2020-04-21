@@ -9,6 +9,8 @@ import moze_intel.projecte.utils.EMCHelper;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 import static darkninja2462.purplematter.handlers.HandlerItems.hoch_star;
 import static moze_intel.projecte.gameObjs.ObjHandler.kleinStars;
 
@@ -20,7 +22,7 @@ public class RecipeHochStar {
      * Crafting recipe for Hoch Star
      * Combine capacities and stored emc from klein and hoch stars into result item
      */
-    public static ItemStack getCraftingResult(InventoryCrafting inv, ItemStack result) {
+    public static ItemStack getCraftingResult(@Nonnull InventoryCrafting inv, @Nonnull ItemStack result) {
         long storedEmc = 0L;
         long capacity = 0L;
         long mass = 0L;
